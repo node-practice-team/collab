@@ -35,3 +35,9 @@ To run this project, you'll need to have the following installed:
    ```sh
    npm start
    ```
+5. Reference project
+    ```sh
+    https://flawsomedev.com/posts/secure-nodejs-restapi-boilerplate/
+    https://github.com/PraneshASP/node-express-api-starter
+    ```
+

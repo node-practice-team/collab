@@ -10,6 +10,8 @@ app.use(Router); //intializing the routes
 var MongoClient = require("mongodb").MongoClient;
 var assert = require("assert");
 const dbConfig = require("./config/db");
+
+//MONGO URL 
 const mongoDbUrl =
   "mongodb+srv://admin:admin@cluster-ap-south-1.1ebos.mongodb.net/";
 
@@ -20,9 +22,13 @@ app.get("/healthcheck", (req, res) => {
   });
 });
 
+
+//PORT LISTENING
 app.listen(port, () => {
   console.log("Server is up on port " + port);
 });
+
+//DATABASE CONNECTION
 MongoClient.connect(mongoDbUrl, (err, database) => {
   try {
     if (err) throw err;

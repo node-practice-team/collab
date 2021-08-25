@@ -1,5 +1,6 @@
 let db = null;
 
+//CONNECT METHOD 
 const connect = (database) => {
   try {
     db = database;
@@ -8,6 +9,7 @@ const connect = (database) => {
   }
 };
 
+//GET COLLECTION METHOD 
 const get = () => {
   try {
     return db;
@@ -16,6 +18,7 @@ const get = () => {
   }
 };
 
+//CLOSE DATABASE
 function close() {
   db.close();
 }

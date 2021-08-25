@@ -5,7 +5,7 @@ const router = express.Router();
 const controller = require("../controllers/rooms.controller");
 
 router.get("/find", controller.findManyRooms);//find many route
-router.get("/findone", controller.findOneRoom);//find one route
+router.get("/findone/:id", controller.findOneRoom);//find one route
 router.get("/range", controller.priceRoom);//price range route
 router.get("/findamenities", controller.findAmenities);//find amenities route
 router.put("/update", controller.updateOneRoom);//update one room route

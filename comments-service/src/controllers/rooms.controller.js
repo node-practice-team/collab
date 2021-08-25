@@ -2,7 +2,7 @@
 const db = require("../config/db");
 
 
-//FIND total documents
+//FIND TOTAL DOCUMENTS WITH 10 LIMIT
 const findManyRooms = async (req, res) => {
   try {
     const response = await db
@@ -17,20 +17,22 @@ const findManyRooms = async (req, res) => {
   }
 };
 
-//Find one document
+//FIND ONE DOCUMENT
 const findOneRoom = async (req, res) => {
+    var id = req.params.id;
+    // var myquery = { _id: id };
   try {
     const response = await db
       .get()
       .collection("listingsAndReviews")
-      .findOne({});
+      .findOne({_id: id});
     res.json({ response });
   } catch (error) {
     console.log(error);
   }
 };
 
-//price range of rooms 
+//PRICE RANGE OF ROOMS
 const priceRoom = async (req, res) => {
   try {
     const response = await db
@@ -45,7 +47,7 @@ const priceRoom = async (req, res) => {
   }
 };
 
-//find amenities
+//FIND AMENITIES
 const findAmenities = async (req, res) => {
   try {
     const necessities = req.query.amenities;
@@ -61,7 +63,7 @@ const findAmenities = async (req, res) => {
   }
 };
 
-//update one room 
+//UPDATE ONE ROOM
 const updateOneRoom = async (req, res) => {
   try {
     var myquery = { bed_type: "Real Bed" };
@@ -79,7 +81,7 @@ const updateOneRoom = async (req, res) => {
   }
 };
 
-//update many rooms 
+//UPDATE MANY ROOMS
 const updateManyRoom = async (req, res) => {
   try {
     var myquery = { beds: 3 };
@@ -97,7 +99,7 @@ const updateManyRoom = async (req, res) => {
   }
 };
 
-//Delete rooms by id 
+//DELETE ROOMS BY ID 
 const deleteOneRoom = async (req, res) => {
   try {
     var id = req.params.id;
@@ -112,7 +114,7 @@ const deleteOneRoom = async (req, res) => {
   }
 };
 
-//Delete many rooms 
+//DELETE MANY ROOMS
 const deleteManyRooms = async (req, res) => {
   try {
     var myquery = {
@@ -127,7 +129,6 @@ const deleteManyRooms = async (req, res) => {
     console.log(error);
   }
 };
-
 
 module.exports = {
   findManyRooms,

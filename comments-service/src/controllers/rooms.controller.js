@@ -39,21 +39,21 @@ const priceRoom = async (req, res) => {
     console.log(error);
   }
 };
-
-const findAmenities = async(req,res)=>{
-    try {
-        const necessities = req.query.amenities
-        const response = await db
+const findAmenities = async (req, res) => {
+  try {
+    const necessities = req.query.amenities;
+    const response = await db
       .get()
       .collection("listingsAndReviews")
-      .find({amenities :{ $all:[necessities]}})
+      .find({ amenities: { $all: [necessities] } })
       .limit(20)
       .toArray();
-    res.json({ response})
-    } catch (error) {
-        console.log(error)
-    }
-}
+    res.json({ response });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const updateOneRoom = async (req, res) => {
   try {
     var myquery = { bed_type: "Real Bed" };
@@ -124,5 +124,5 @@ module.exports = {
   updateManyRoom,
   deleteOneRoom,
   deleteManyRooms,
-  findAmenities
+  findAmenities,
 };

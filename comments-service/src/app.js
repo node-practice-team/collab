@@ -12,16 +12,6 @@ var assert = require("assert");
 const dbConfig = require("./config/db");
 const mongoDbUrl =
   "mongodb+srv://admin:admin@cluster-ap-south-1.1ebos.mongodb.net/";
-// var db = null;
-// MongoClient.connect(
-//   "mongodb+srv://admin:admin@cluster-ap-south-1.1ebos.mongodb.net/",
-//   function (err, database) {
-//     assert.equal(err, null);
-//     if (err) throw err;
-//     db = database.db("sample_airbnb");
-//     console.log("database set");
-//   }
-// );
 
 //Define the endpoint
 app.get("/healthcheck", (req, res) => {

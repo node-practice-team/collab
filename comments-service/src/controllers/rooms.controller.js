@@ -69,7 +69,7 @@ const updateOneRoom = async (req, res) => {
     const response = await db
       .get()
       .collection("listingsAndReviews")
-      .updateOne(myquery, newvalues);
+      .updateOne({myquery}, {$set:{_id:"100000"}});
     console.log("respone updated");
     res.json({ response });
   } catch (error) {

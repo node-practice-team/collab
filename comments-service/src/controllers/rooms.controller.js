@@ -1,7 +1,5 @@
-
 const db = require("../config/db");
-
-
+var bodyParser = require("body-parser");
 //FIND TOTAL DOCUMENTS WITH 10 LIMIT
 const findManyRooms = async (req, res) => {
   try {
@@ -17,22 +15,22 @@ const findManyRooms = async (req, res) => {
   }
 };
 
-//FIND ONE DOCUMENT
+//FIND ONE DOCUMENT BY ID
 const findOneRoom = async (req, res) => {
-    var id = req.params.id;
-    // var myquery = { _id: id };
+  var id = req.params.id;
+  // var myquery = { _id: id };
   try {
     const response = await db
       .get()
       .collection("listingsAndReviews")
-      .findOne({_id: id});
+      .findOne({ _id: id });
     res.json({ response });
   } catch (error) {
     console.log(error);
   }
 };
 
-//PRICE RANGE OF ROOMS
+//PRICE RANGE OF ROOMS IN QUERY PARAMS
 const priceRoom = async (req, res) => {
   try {
     const response = await db
@@ -48,14 +46,14 @@ const priceRoom = async (req, res) => {
 };
 
 //FIND AMENITIES
-const findAmenities = async (req, res) => {
+const findByAmenities = async (req, res) => {
   try {
-    const necessities = req.query.amenities;
+    const requirements = req.body.amenities;
     const response = await db
       .get()
       .collection("listingsAndReviews")
-      .find({ amenities: { $all: [necessities] } })
-      .limit(20)
+      .find({$and:[{amenities:{$all:requirements}}]})
+      .limit(10)
       .toArray();
     res.json({ response });
   } catch (error) {
@@ -66,10 +64,8 @@ const findAmenities = async (req, res) => {
 //UPDATE ONE ROOM
 const updateOneRoom = async (req, res) => {
   try {
-    var myquery = { bed_type: "Real Bed" };
-    var newvalues = {
-      $set: { bed_type: "Wood Bed" },
-    };
+    var id = req.params.id;
+    var myquery = { _id: id };
     const response = await db
       .get()
       .collection("listingsAndReviews")
@@ -84,14 +80,10 @@ const updateOneRoom = async (req, res) => {
 //UPDATE MANY ROOMS
 const updateManyRoom = async (req, res) => {
   try {
-    var myquery = { beds: 3 };
-    var newvalues = {
-      $set: { beds: 5 },
-    };
     const response = await db
       .get()
       .collection("listingsAndReviews")
-      .updateMany(myquery, newvalues);
+      .updateMany();
     console.log("respone updated");
     res.json({ response });
   } catch (error) {
@@ -99,7 +91,7 @@ const updateManyRoom = async (req, res) => {
   }
 };
 
-//DELETE ROOMS BY ID 
+//DELETE ROOMS BY ID
 const deleteOneRoom = async (req, res) => {
   try {
     var id = req.params.id;
@@ -138,5 +130,5 @@ module.exports = {
   updateManyRoom,
   deleteOneRoom,
   deleteManyRooms,
-  findAmenities,
+  findByAmenities,
 };
